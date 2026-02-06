@@ -19,12 +19,12 @@ const VariantRouter = () => {
 
   // Handle Redirection based on variant vs current path
   if (variant === 'B' && location.pathname === '/') {
-    window.location.replace('/index2');
+    window.location.replace('/index2' + location.search);
     return null;
   }
 
   if (variant === 'A' && location.pathname === '/index2') {
-    window.location.replace('/');
+    window.location.replace('/' + location.search);
     return null;
   }
 

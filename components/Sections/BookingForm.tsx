@@ -118,9 +118,9 @@ const BookingForm: React.FC = () => {
     setStep('submitting');
 
     const searchParams = new URLSearchParams(window.location.search);
-    const utmSource = searchParams.get('utm_source') || '';
-    const utmMedium = searchParams.get('utm_medium') || '';
-    const utmCampaign = searchParams.get('utm_campaign') || '';
+    const utmSource = searchParams.get('utm_source') || null;
+    const utmMedium = searchParams.get('utm_medium') || null;
+    const utmCampaign = searchParams.get('utm_campaign') || null;
 
     const payload = {
       ...formData,
@@ -152,9 +152,9 @@ const BookingForm: React.FC = () => {
 
     // Redirect to Calendly for other budgets
     const calendlyUrl = new URL('https://calendly.com/roasell/roasell-analiz-gorusmesi');
-    calendlyUrl.searchParams.set('utm_source', utmSource);
-    calendlyUrl.searchParams.set('utm_medium', utmMedium);
-    calendlyUrl.searchParams.set('utm_campaign', utmCampaign);
+    if (utmSource) calendlyUrl.searchParams.set('utm_source', utmSource);
+    if (utmMedium) calendlyUrl.searchParams.set('utm_medium', utmMedium);
+    if (utmCampaign) calendlyUrl.searchParams.set('utm_campaign', utmCampaign);
     calendlyUrl.searchParams.set('month', '2025-12');
     calendlyUrl.searchParams.set('name', `${formData.firstName} ${formData.lastName}`);
 

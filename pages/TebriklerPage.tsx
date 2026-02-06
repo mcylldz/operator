@@ -93,7 +93,11 @@ const TebriklerPage: React.FC = () => {
                 ln: hashedLastName,
                 // Transaction
                 price: 97,
-                currency: 'USD'
+                currency: 'USD',
+                // UTM Parameters
+                utm_source: purchaseInfo.utm_source || null,
+                utm_medium: purchaseInfo.utm_medium || null,
+                utm_campaign: purchaseInfo.utm_campaign || null
             };
 
             // Clear temporary storage

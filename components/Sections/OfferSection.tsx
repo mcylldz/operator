@@ -124,6 +124,13 @@ const OfferSection: React.FC = () => {
     const [customerInfo, setCustomerInfo] = useState({ name: '', email: '', phone: '' });
     const [step, setStep] = useState<'info' | 'payment'>('info');
 
+    // UTM Params
+    const [utmParams, setUtmParams] = useState({
+        utm_source: new URLSearchParams(window.location.search).get('utm_source') || null,
+        utm_medium: new URLSearchParams(window.location.search).get('utm_medium') || null,
+        utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign') || null
+    });
+
     // Countdown logic: 24 minutes
     const [timeLeft, setTimeLeft] = useState(24 * 60);
 
@@ -148,11 +155,12 @@ const OfferSection: React.FC = () => {
                 const leadWebhook = 'https://dtt1z7t3.rcsrv.com/webhook/kitlead';
                 const leadData = {
                     ...customerInfo,
+                    ...utmParams,
                     variant: localStorage.getItem('ab_variant') || 'A',
                     event_name: 'Lead',
                     event_id: crypto.randomUUID(),
                     event_time: Math.floor(Date.now() / 1000),
-                    url: window.location.href.split('?')[0],
+                    url: window.location.href,
                     ua: navigator.userAgent
                 };
 
@@ -170,7 +178,7 @@ const OfferSection: React.FC = () => {
             })();
 
             // Save info for the success page webhook
-            localStorage.setItem('last_purchase_info', JSON.stringify(customerInfo));
+            localStorage.setItem('last_purchase_info', JSON.stringify({ ...customerInfo, ...utmParams }));
 
             const res = await fetch('/.netlify/functions/create-payment-intent', {
                 method: "POST",
