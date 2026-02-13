@@ -115,7 +115,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase"
         >
           Her gün ne yapacağını söyleyen <br /> <span className="text-roasell-gold font-extrabold">bir sistem ister misin?</span>
         </motion.h1>
