@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
         <div className="bg-roasell-black min-h-screen text-white selection:bg-roasell-gold selection:text-black">
             <Header />
             <main>
-                <Hero variant="A" />
+                <Hero variant="B" />
 
                 <Credibility />
                 <StatsSection />
