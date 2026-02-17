@@ -201,7 +201,7 @@ const TebriklerPage: React.FC = () => {
         <div className="min-h-screen bg-roasell-black text-white flex flex-col">
             <Header />
 
-            <div className="flex-1 flex items-center justify-center p-4 pt-24 md:pt-32">
+            <div className="flex-1 flex items-center justify-center p-4 pt-32 md:pt-40">
                 <div className="max-w-2xl w-full text-center">
 
                     {/* Title */}
@@ -230,7 +230,7 @@ const TebriklerPage: React.FC = () => {
                                         Lütfen panele giriş yapabilmek için şifrenizi oluşturun.
                                     </p>
 
-                                    <form onSubmit={handleSubmit} className="space-y-5 max-w-md mx-auto text-left">
+                                    <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto text-left">
                                         {/* Password Field */}
                                         <div>
                                             <label className="block text-sm font-medium text-gray-300 mb-2">Şifre</label>
@@ -299,16 +299,18 @@ const TebriklerPage: React.FC = () => {
                                         )}
 
                                         {/* Submit Button */}
-                                        <button
-                                            type="submit"
-                                            disabled={!isValid}
-                                            className={`w-full py-4 rounded-xl font-bold text-lg uppercase tracking-wide transition-all duration-300 ${isValid
-                                                ? 'bg-gradient-to-r from-roasell-gold to-yellow-500 text-black hover:shadow-lg hover:shadow-roasell-gold/25 hover:scale-[1.02] active:scale-[0.98]'
-                                                : 'bg-white/10 text-gray-500 cursor-not-allowed'
-                                                }`}
-                                        >
-                                            Şifre Oluştur
-                                        </button>
+                                        <div className="pt-4">
+                                            <button
+                                                type="submit"
+                                                disabled={!isValid}
+                                                className={`w-full py-3.5 rounded-xl font-bold text-base uppercase tracking-wide transition-all duration-300 ${isValid
+                                                    ? 'bg-gradient-to-r from-roasell-gold to-yellow-500 text-black hover:shadow-lg hover:shadow-roasell-gold/25 hover:scale-[1.02] active:scale-[0.98]'
+                                                    : 'border-2 border-white/20 bg-transparent text-gray-400 cursor-not-allowed'
+                                                    }`}
+                                            >
+                                                Şifre Oluştur
+                                            </button>
+                                        </div>
                                     </form>
                                 </div>
                             </motion.div>
