@@ -11,7 +11,7 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
   const [isLocked, setIsLocked] = useState(false);
   const [preCountdown, setPreCountdown] = useState(3);
-  const [lockTimer, setLockTimer] = useState(180); // 3 minutes
+  const [lockTimer, setLockTimer] = useState(60); // 1 minute
   const [isCountingDown, setIsCountingDown] = useState(false);
   const [videoStarted, setVideoStarted] = useState(false);
 
@@ -19,8 +19,9 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
 
   useEffect(() => {
     if (variant === 'B' && !lockCheckRef.current) {
+      const isMobile = window.innerWidth < 768;
       const completed = localStorage.getItem('video_lock_completed');
-      if (!completed) {
+      if (!completed && isMobile) {
         setIsLocked(true);
         setIsCountingDown(true);
       }
