@@ -46,7 +46,8 @@ const TebriklerPage: React.FC = () => {
                         value: 97,
                         currency: 'USD',
                         content_type: 'product',
-                        content_ids: ['roasell-kit']
+                        content_ids: ['roasell-kit'],
+                        client_user_agent: navigator.userAgent
                     }, {
                         eventID: event_id
                     });

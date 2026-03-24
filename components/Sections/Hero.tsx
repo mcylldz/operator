@@ -107,7 +107,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           className="mb-0.5 md:mb-1"
         >
           <span className="text-[10px] md:text-xs font-semibold text-gray-400 tracking-widest uppercase">
-            “Ne yapacağım ? Nereden başlayacağım ?” Diyenler
+            “Sistemi kurayım ama nereden başlayacağım?” Diyenler
           </span>
         </motion.div>
 
@@ -118,7 +118,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase"
         >
-          Her gün ne yapacağını söyleyen <br /> <span className="text-roasell-gold font-extrabold">bir sistem ister misin?</span>
+          Bir e-ticaret operasyonu nasıl <br /> <span className="text-roasell-gold font-extrabold">sizden bağımsız büyür?</span>
         </motion.h1>
 
         {/* Description */}
@@ -128,7 +128,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-sm md:text-xl text-gray-400 mb-2 md:mb-6 max-w-xl mx-auto leading-normal px-2"
         >
-          8 yıldır Türkiye, Avrupa ve Amerika'da markalar kuruyoruz. Şimdi bu deneyimi <span className="text-gray-200 font-medium">Roasell Kit</span> üzerinde birleştirdik.
+          8 yıldır Türkiye, Avrupa ve Amerika'da operasyonlar yönetiyoruz. Şimdi bu operasyonların içini <span className="text-gray-200 font-medium">Roasell Operatör Sistemi</span>'nde sana açıyoruz.
         </motion.p>
 
         {/* Video Area */}
@@ -208,7 +208,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           {/* Disclaimer Note (Visible only when unlocked or for variant A) */}
           {!isLocked && (
             <div className="mt-2 text-[10px] md:text-xs text-gray-500 max-w-3xl text-center leading-relaxed px-2">
-              <span className="font-bold text-red-500">Not:</span> RoaSell'de hızlı para kazanma ve sistem açıklarından bahsetmiyoruz. Sürdürülebilir, değer odaklı bir marka kurmanız için kendi markalarımızda ne yapıyorsak; aynısını size de uyarlatıyoruz.
+              <span className="font-bold text-red-500">Not:</span> Roasell Operatör Sistemi'nde hızlı zenginlik hikayeleri veya teorik tavsiyeler yok. Sizden bağımsız büyüyen, sürdürülebilir bir operasyon kurmanız için kendi operasyonlarımızda nasıl yapıyorsak, aynısını size adım adım gösteriyoruz.
             </div>
           )}
         </motion.div>

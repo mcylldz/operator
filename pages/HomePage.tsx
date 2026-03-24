@@ -6,10 +6,11 @@ import Credibility from '../components/Sections/Credibility';
 import StatsSection from '../components/Sections/StatsSection';
 import SystemSection from '../components/Sections/SystemSection';
 import Features from '../components/Sections/Features';
-import ProgramFlow from '../components/Sections/ProgramFlow';
+import ForWhom from '../components/Sections/ForWhom';
 import Testimonials from '../components/Sections/Testimonials';
 import OfferSection from '../components/Sections/OfferSection';
 import Footer from '../components/Sections/Footer';
+import FAQ from '../components/Sections/FAQ';
 
 const HomePage: React.FC = () => {
     return (
@@ -26,9 +27,10 @@ const HomePage: React.FC = () => {
                     <div className="absolute top-0 left-0 right-0 h-px bg-roasell-gold/30"></div>
                     <Features />
                 </div>
-                <ProgramFlow />
+                <ForWhom />
                 <Testimonials />
                 <OfferSection />
+                <FAQ />
             </main>
             <Footer />
         </div>

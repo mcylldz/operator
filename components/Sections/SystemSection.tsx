@@ -85,21 +85,20 @@ const SystemSection: React.FC = () => {
 
               <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-roasell-gold text-[10px] md:text-sm font-medium mb-3">
                 <Database className="w-3 h-3 md:w-4 md:h-4" />
-                <span>Kanıtlanmış Altyapı</span>
+                <span>Operatör Sistemi</span>
               </div>
               <h2 className="text-2xl md:text-4xl font-bold font-display mb-3 text-white leading-tight">
-                Sıfırdan Satışa <br />
-                <span className="text-roasell-gold">Giden Yol</span>
+                Operasyonu Sıfırdan Kuranlar İçin
               </h2>
               <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
-                Roasell Kit, sıfırdan başlayıp mağazanı reklama çıkarana kadar gereken her şeyi gün gün önüne koyar. Tek bir kaynaktan ilerlersin: uygularsın, kurarsın, satışa çıkarsın.
+                Roasell Operatör Sistemi, ilk günden itibaren ne yapman gerektiğini değil, nasıl yapıldığını gösterir. Kendi operasyonumuzun dökümantasyonları, sistemleri ve adımlarıyla ilerlersin.
               </p>
 
               <div className="space-y-2 md:space-y-3">
                 {[
-                  "Gün gün görevler",
-                  "Test edilmiş adımlar",
-                  "499$ değerinde bonus içerikler"
+                  "Adım adım operasyon kurulumu",
+                  "Gerçek bir mağazadan alınan kararlar",
+                  "Kendi sisteminize entegre edebileceğiniz drive dosyaları"
                 ].map((item, idx) => (
                   <div key={idx} className="flex items-center gap-2 md:gap-3 text-gray-300 text-xs md:text-base">
                     <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-roasell-gold/20 flex items-center justify-center text-roasell-gold shrink-0">

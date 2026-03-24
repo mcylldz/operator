@@ -9,10 +9,10 @@ const Features: React.FC = () => {
                 <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
                     <div className="mb-2 lg:mb-0">
                         <h2 className="text-xl md:text-4xl font-bold font-display mb-2 md:mb-4">
-                            Neden <span className="text-roasell-gold">RoaSell Kit?</span>
+                            Neden <span className="text-roasell-gold">Roasell Operatör Sistemi?</span>
                         </h2>
                         <p className="text-gray-400 text-sm md:text-lg leading-relaxed">
-                            RoaSell Kit sana 28 gün boyunca her gün ne yapacağını söyler. Tek kaynaktan ilerlersin, adımları uygularsın ve mağazanı satışa çıkarırsın.
+                            Çoğu eğitim size ne yapmanız gerektiğini söyler. Biz size nasıl yapıldığını gösteriyoruz. Kendi operasyonumuzun içine giriyorsunuz, sistemimizi görüyorsunuz, dökümantasyonlarımıza erişiyorsunuz ve bunu kendi operasyonunuza uyguluyorsunuz.
                         </p>
                     </div>
 

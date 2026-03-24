@@ -8,14 +8,14 @@ const Credibility: React.FC = () => {
 
         <div className="max-w-4xl mx-auto text-center mb-4 md:mb-12">
           <h2 className="text-xl md:text-3xl font-bold font-display mb-2 md:mb-3">
-            8 Yıllık Deneyim ve <span className="text-roasell-gold">Dökümantasyon</span>
+            Operasyondan Gelen <span className="text-roasell-gold">Bilgi</span>
           </h2>
-          <p className="text-gray-400 text-xs md:text-base leading-relaxed hidden md:block">
-            8 yıl önce kendi imkanlarımızla başladığımız e-ticaret yolculuğunda; Türkiye, Avrupa ve Amerika'da markalar kurduk.
-            <span className="text-white font-semibold"> ARspar</span> ve <span className="text-white font-semibold">ARtonar</span> markalarımızla global devlerle iş birlikleri yaptık.
-          </p>
+            <p className="text-gray-400 text-xs md:text-base leading-relaxed hidden md:block">
+             8 yıl önce sıfırdan başladık. Türkiye, Avrupa ve Amerika pazarlarında markalar inşa ettik.
+             <span className="text-white font-semibold"> Roasell</span> ve <span className="text-white font-semibold">Romesel</span> çatısı altında kurduğumuz operasyonları bugün hâlâ bizzat yönetiyoruz. Size öğrettiğimiz her şeyi önce kendimiz sahada test ettik.
+           </p>
           <p className="text-gray-400 text-xs leading-relaxed md:hidden">
-            <span className="text-white font-semibold">ARspar</span> ve <span className="text-white font-semibold">ARtonar</span> markalarımızla 8 yıldır global devlerle iş birliği yapıyoruz.
+            <span className="text-white font-semibold">Roasell</span> ve <span className="text-white font-semibold">Romesel</span> operasyonlarını bugün hâlâ bizzat yönetiyoruz.
           </p>
         </div>
 

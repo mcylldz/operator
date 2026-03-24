@@ -1,10 +1,10 @@
 import {
-  Search,
-  Tag,
-  Building2,
-  Store,
-  Share2,
-  Megaphone,
+  Microscope,
+  PiggyBank,
+  Layers,
+  LayoutDashboard,
+  Fingerprint,
+  TrendingUp,
   CheckCircle2
 } from 'lucide-react';
 import { StatItem, FeatureItem, TestimonialItem, BrandLogo, ProgramStep } from './types';
@@ -26,34 +26,34 @@ export const STATS: StatItem[] = [
 
 export const FEATURES: FeatureItem[] = [
   {
-    title: 'Ürün Araştırması',
-    description: 'Kazanan ürünün mantığını öğrenin ve ilk ürününü bulun.',
-    icon: <Search className="w-6 h-6 text-roasell-gold" />
+    title: 'Ürün ve Pazar Araştırması',
+    description: 'Kazanan ürünü nasıl bulduğumuzu ve neden seçtiğimizi kendi dökümantasyonlarımız üzerinden görün.',
+    icon: <Microscope className="w-6 h-6 text-roasell-gold" />
   },
   {
-    title: 'Teklif',
-    description: 'Kâr edebilecek noktanızı tespit edin, gerçek fiyatlandırmanızı yapın.',
-    icon: <Tag className="w-6 h-6 text-roasell-gold" />
+    title: 'Teklif ve Marj Yönetimi',
+    description: 'Kârlı bir operasyonun fiyatlandırmasını ve teklif yapısını gerçek rakamlarla öğrenin.',
+    icon: <PiggyBank className="w-6 h-6 text-roasell-gold" />
   },
   {
-    title: 'Şirket Kurulumu',
-    description: 'Şirket kurulumu, kurumsal banka hesabı ve ödeme yöntemleri adımlarını öğrenin',
-    icon: <Building2 className="w-6 h-6 text-roasell-gold" />
+    title: 'Operasyon Kurulumu',
+    description: 'Şirket yapısından ödeme sistemlerine kadar operasyonun temellerini doğru kurun.',
+    icon: <Layers className="w-6 h-6 text-roasell-gold" />
   },
   {
-    title: 'Mağaza',
-    description: 'Roasell’in hazır mağaza şablonları sayesinde günlerce süren mağaza işini kısa sürede tamamlayın.',
-    icon: <Store className="w-6 h-6 text-roasell-gold" />
+    title: 'Mağaza ve Dönüşüm',
+    description: 'Gerçek mağazamızın nasıl kurgulandığını, hangi kararların alındığını adım adım görün.',
+    icon: <LayoutDashboard className="w-6 h-6 text-roasell-gold" />
   },
   {
-    title: 'Sosyal Medya',
-    description: 'Satışa optimize şekilde mağazanız için sosyal medya hesabınızı oluşturun ve ilk takipçilerinizi edinin.',
-    icon: <Share2 className="w-6 h-6 text-roasell-gold" />
+    title: 'Marka ve Sosyal Medya',
+    description: 'Satışa optimize bir marka kimliğini ve sosyal medya varlığını nasıl kurduğumuzu öğrenin.',
+    icon: <Fingerprint className="w-6 h-6 text-roasell-gold" />
   },
   {
-    title: 'Pazarlama - Test Et & Ölçekle',
-    description: 'Para yakmadan reklam açın: test et, analiz et, ölçekle.',
-    icon: <Megaphone className="w-6 h-6 text-roasell-gold" />
+    title: 'Reklam ve Ölçekleme',
+    description: 'Sıfır dolar harcamadan günlük on bin dolar reklam bütçesine giden operasyonun reklam kararlarını canlı panelden izleyin.',
+    icon: <TrendingUp className="w-6 h-6 text-roasell-gold" />
   }
 ];
 

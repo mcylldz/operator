@@ -35,7 +35,10 @@
     }
       (window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-    fbq('init', '170135295273206');
+    fbq('init', '170135295273206', {
+      external_id: '',          // doldurulacaksa kullanıcı ID'si
+      client_user_agent: navigator.userAgent
+    });
     /* Buradaki track('PageView') KALDIRILDI — eventID'li çağrı body'de yapılacak */
   </script>
 
@@ -99,7 +102,7 @@
       const fbc = computeFBC() || '';
       const user_agent = navigator.userAgent || '';
 
-      // 1) Browser Pixel
+      // 1) Browser Pixel (UA fbq init'te geçildi; IP tarayıcı pixel'inde gönderilemez — Facebook sunucu tarafında otomatik yakalar)
       try { fbq('track', EVENT, {}, { eventID: event_id }); } catch (e) { }
 
       // 2) Robust Webhook Send
