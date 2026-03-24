@@ -25,10 +25,9 @@ const Button: React.FC<ButtonProps> = ({
   const shapeStyles = "rounded-lg";
 
   const variants = {
-    // Gradient background for premium feel
-    primary: "bg-gradient-gold text-black shadow-[0_2px_15px_rgba(245,166,35,0.15)] hover:shadow-[0_4px_20px_rgba(245,166,35,0.3)] hover:brightness-105 border border-white/10",
-    outline: "border border-roasell-gold/40 text-roasell-gold hover:border-roasell-gold hover:bg-roasell-gold/5 backdrop-blur-sm",
-    ghost: "text-gray-400 hover:text-white hover:bg-white/5"
+    primary: "bg-[#023a97] text-white shadow-[0_2px_15px_rgba(2,58,151,0.25)] hover:shadow-[0_4px_20px_rgba(2,58,151,0.4)] hover:brightness-110 border border-[#023a97]/20",
+    outline: "border border-[#023a97]/40 text-[#023a97] hover:border-[#023a97] hover:bg-[#023a97]/5 backdrop-blur-sm",
+    ghost: "text-gray-500 hover:text-[#023a97] hover:bg-[#023a97]/5"
   };
 
   const sizes = {
