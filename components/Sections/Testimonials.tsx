@@ -95,7 +95,7 @@ const Testimonials: React.FC = () => {
 
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-xl md:text-4xl font-bold font-display mb-2">
+          <h2 className="text-xl md:text-4xl font-bold font-display mb-2 text-gray-900">
             RoaSell Kullanıcılarının <span className="text-roasell-gold">Tecrübeleri</span>
           </h2>
           <p className="text-gray-400 text-[10px] md:text-sm">Gerçek kullanıcılar, gerçek sonuçlar ve kanıtlanmış başarı.</p>

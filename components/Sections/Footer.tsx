@@ -3,7 +3,7 @@ import { Instagram, Youtube, Linkedin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-50 py-12 border-t border-gray-200">
+    <footer className="bg-black py-12 border-t border-white/10">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
 
         {/* Logo & Copyright */}
@@ -15,17 +15,17 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Links */}
-        <div className="flex gap-6 text-sm text-gray-500">
+        <div className="flex gap-6 text-sm text-gray-400">
           <a href="#" className="hover:text-roasell-gold transition-colors">Gizlilik Politikası</a>
           <a href="#" className="hover:text-roasell-gold transition-colors">Kullanım Şartları</a>
         </div>
 
         {/* Socials */}
         <div className="flex gap-4">
-          <a href="https://www.instagram.com/gurkanzone/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-roasell-gold hover:text-white transition-all">
+          <a href="https://www.instagram.com/gurkanzone/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-roasell-gold hover:text-white transition-all">
             <Instagram className="w-5 h-5" />
           </a>
-          <a href="https://www.youtube.com/@gurkanzone" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-roasell-gold hover:text-white transition-all">
+          <a href="https://www.youtube.com/@gurkanzone" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-roasell-gold hover:text-white transition-all">
             <Youtube className="w-5 h-5" />
           </a>
         </div>

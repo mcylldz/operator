@@ -82,7 +82,7 @@ const ForWhom: React.FC = () => {
             </div>
             <ul className="space-y-4">
               {NOT_FOR_ITEMS.map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3 text-gray-200 text-base leading-snug">
+                <li key={idx} className="flex items-start gap-3 text-gray-800 text-base leading-snug">
                   <XCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </li>

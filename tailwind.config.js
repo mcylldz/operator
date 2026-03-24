@@ -12,9 +12,9 @@ export default {
                     black: '#ffffff',
                     card: '#f8f9fb',
                     dark: '#f1f3f6',
-                    gold: '#52b2ce',
-                    goldLight: '#65d0eb',
-                    goldDark: '#357a94',
+                    gold: '#080d23',
+                    goldLight: '#1a2340',
+                    goldDark: '#080d23',
                     gray: '#6b7280',
                     border: '#e5e7eb'
                 }

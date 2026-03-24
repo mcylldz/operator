@@ -41,11 +41,11 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <section className="py-12 md:py-20 bg-white border-t border-gray-200">
+    <section className="py-12 md:py-20 bg-[#080d23] border-t border-white/5">
       <div className="container mx-auto px-4 max-w-3xl">
         {/* Title */}
         <div className="text-center mb-10 md:mb-14">
-          <h2 className="text-2xl md:text-4xl font-bold font-display text-gray-900">
+          <h2 className="text-2xl md:text-4xl font-bold font-display text-white">
             Sıkça Sorulan <span className="text-roasell-gold">Sorular</span>
           </h2>
         </div>
@@ -59,15 +59,15 @@ const FAQ: React.FC = () => {
                 key={idx}
                 className={`rounded-xl border transition-colors duration-200 overflow-hidden ${
                   isOpen
-                    ? 'border-roasell-gold/40 bg-roasell-gold/5'
-                    : 'border-gray-200 bg-white hover:border-gray-300'
+                    ? 'border-roasell-gold/40 bg-white/5'
+                    : 'border-white/10 bg-white/[0.03] hover:border-white/20'
                 }`}
               >
                 <button
                   onClick={() => toggle(idx)}
                   className="w-full flex items-center justify-between gap-4 px-5 py-4 md:px-6 md:py-5 text-left"
                 >
-                  <span className={`font-semibold text-base md:text-lg leading-snug ${isOpen ? 'text-roasell-goldDark' : 'text-gray-800'}`}>
+                  <span className={`font-semibold text-base md:text-lg leading-snug ${isOpen ? 'text-roasell-gold' : 'text-white'}`}>
                     {faq.q}
                   </span>
                   <ChevronDown
@@ -86,7 +86,7 @@ const FAQ: React.FC = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.28, ease: 'easeInOut' }}
                     >
-                      <div className="px-5 pb-5 md:px-6 md:pb-6 text-gray-600 text-base leading-relaxed border-t border-gray-100 pt-4">
+                      <div className="px-5 pb-5 md:px-6 md:pb-6 text-gray-300 text-base leading-relaxed border-t border-white/10 pt-4">
                         {faq.a}
                       </div>
                     </motion.div>
