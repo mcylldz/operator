@@ -106,11 +106,7 @@ const CheckoutForm = () => {
             >
                 {isLoading ? "İşleniyor..." : "SİPARİŞİ TAMAMLA - $97"}
             </Button>
-            <div className="mt-2 text-center animate-pulse">
-                <span className="bg-red-50 text-red-600 px-3 py-1.5 rounded-full text-xs md:text-sm font-bold border border-red-100 shadow-sm inline-flex items-center gap-1.5">
-                    🎁 $499'lık Bonus Paket Hediye!
-                </span>
-            </div>
+
             <div className="flex items-center justify-center gap-2 text-xs text-gray-500 mt-2">
                 <Lock className="w-3 h-3" />
                 <span>256-bit SSL ile güvenli ödeme</span>
@@ -359,11 +355,7 @@ const OfferSection: React.FC = () => {
                                     <Button type="submit" variant="primary" size="lg" className="w-full font-bold py-4 mt-4 shadow-lg shadow-roasell-gold/20 text-white" withArrow>
                                         ÖDEMEYE GEÇ →
                                     </Button>
-                                    <div className="mt-2 text-center animate-pulse">
-                                        <span className="bg-red-50 text-red-600 px-3 py-1.5 rounded-full text-xs md:text-sm font-bold border border-red-100 shadow-sm inline-flex items-center gap-1.5">
-                                            🎁 $499'lık Bonus Paket Hediye!
-                                        </span>
-                                    </div>
+
                                     <p className="text-center text-xs text-gray-400 mt-3">Bilgileriniz 256-bit SSL sertifikası ile korunmaktadır.</p>
                                 </form>
                             ) : (

@@ -3,7 +3,6 @@ import Header from '../components/Sections/Header';
 import Hero from '../components/Sections/Hero';
 
 import Credibility from '../components/Sections/Credibility';
-import StatsSection from '../components/Sections/StatsSection';
 import SystemSection from '../components/Sections/SystemSection';
 import Features from '../components/Sections/Features';
 import ForWhom from '../components/Sections/ForWhom';
@@ -20,7 +19,6 @@ const HomePage: React.FC = () => {
                 <Hero variant="B" />
 
                 <Credibility />
-                <StatsSection />
                 <SystemSection />
                 <div className="relative">
                     {/* Visual separator between system/features */}

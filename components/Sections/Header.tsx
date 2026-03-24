@@ -26,11 +26,8 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-8 relative flex items-center justify-between h-14">
 
-        {/* Left Side - Language (Hidden on mobile to keep focus on logo) */}
-        <div className="hidden md:flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity cursor-pointer">
-          <span className="text-lg">🇬🇧</span>
-          <span className="text-sm font-medium text-gray-300">English</span>
-        </div>
+        {/* Left Side - placeholder for layout balance */}
+        <div className="hidden md:block w-24" />
 
         {/* Logo - Absolutely Centered */}
         <div
@@ -44,17 +41,8 @@ const Header: React.FC = () => {
           />
         </div>
 
-        {/* Right Side - Button (Hidden on mobile) */}
-        <div className="hidden md:block">
-          <div className="flex flex-col items-center">
-            <Button variant="primary" size="sm" onClick={scrollToOffer} className="text-xs px-5">
-              ANALİZ BAŞVURU
-            </Button>
-            <div className="mt-1 flex items-center gap-1 text-[8px] font-bold text-red-500 animate-pulse whitespace-nowrap">
-              🎁 $499'lık Bonus Hediye!
-            </div>
-          </div>
-        </div>
+        {/* Right Side - empty */}
+        <div className="hidden md:block w-24" />
       </div>
     </header >
   );
