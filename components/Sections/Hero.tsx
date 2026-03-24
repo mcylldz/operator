@@ -81,9 +81,9 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
   };
 
   return (
-    <section id="hero" className="relative flex flex-col pt-20 md:pt-28 pb-4 overflow-hidden bg-roasell-black">
+    <section id="hero" className="relative flex flex-col pt-20 md:pt-28 pb-4 overflow-hidden bg-white">
       {/* Background Effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[500px] bg-roasell-gold/5 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[800px] h-[500px] bg-roasell-gold/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Global Dimming Overlay for Variant B */}
       <AnimatePresence>
@@ -106,7 +106,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           transition={{ duration: 0.5 }}
           className="mb-0.5 md:mb-1"
         >
-          <span className="text-[10px] md:text-xs font-semibold text-gray-400 tracking-widest uppercase">
+          <span className="text-[10px] md:text-xs font-semibold text-gray-500 tracking-widest uppercase">
             “Sistemi kurayım ama nereden başlayacağım?” Diyenler
           </span>
         </motion.div>
@@ -116,7 +116,7 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase"
         >
           Bir e-ticaret operasyonu nasıl <br /> <span className="text-roasell-gold font-extrabold">sizden bağımsız büyür?</span>
         </motion.h1>
@@ -126,9 +126,9 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-sm md:text-xl text-gray-400 mb-2 md:mb-6 max-w-xl mx-auto leading-normal px-2"
+          className="text-sm md:text-xl text-gray-500 mb-2 md:mb-6 max-w-xl mx-auto leading-normal px-2"
         >
-          8 yıldır Türkiye, Avrupa ve Amerika'da operasyonlar yönetiyoruz. Şimdi bu operasyonların içini <span className="text-gray-200 font-medium">Roasell Operatör Sistemi</span>'nde sana açıyoruz.
+          8 yıldır Türkiye, Avrupa ve Amerika'da operasyonlar yönetiyoruz. Şimdi bu operasyonların içini <span className="text-gray-700 font-medium">Roasell Operatör Sistemi</span>'nde sana açıyoruz.
         </motion.p>
 
         {/* Video Area */}

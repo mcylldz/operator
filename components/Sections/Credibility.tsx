@@ -10,12 +10,12 @@ const Credibility: React.FC = () => {
           <h2 className="text-xl md:text-3xl font-bold font-display mb-2 md:mb-3">
             Operasyondan Gelen <span className="text-roasell-gold">Bilgi</span>
           </h2>
-            <p className="text-gray-400 text-xs md:text-base leading-relaxed hidden md:block">
+            <p className="text-gray-500 text-xs md:text-base leading-relaxed hidden md:block">
              8 yıl önce sıfırdan başladık. Türkiye, Avrupa ve Amerika pazarlarında markalar inşa ettik.
-             <span className="text-white font-semibold"> Roasell</span> ve <span className="text-white font-semibold">Romesel</span> çatısı altında kurduğumuz operasyonları bugün hâlâ bizzat yönetiyoruz. Size öğrettiğimiz her şeyi önce kendimiz sahada test ettik.
+             <span className="text-gray-900 font-semibold"> Roasell</span> ve <span className="text-gray-900 font-semibold">Romesel</span> çatısı altında kurduğumuz operasyonları bugün hâlâ bizzat yönetiyoruz. Size öğrettiğimiz her şeyi önce kendimiz sahada test ettik.
            </p>
-          <p className="text-gray-400 text-xs leading-relaxed md:hidden">
-            <span className="text-white font-semibold">Roasell</span> ve <span className="text-white font-semibold">Romesel</span> operasyonlarını bugün hâlâ bizzat yönetiyoruz.
+          <p className="text-gray-500 text-xs leading-relaxed md:hidden">
+            <span className="text-gray-900 font-semibold">Roasell</span> ve <span className="text-gray-900 font-semibold">Romesel</span> operasyonlarını bugün hâlâ bizzat yönetiyoruz.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ const Credibility: React.FC = () => {
                   className={`${brand.className || 'h-8 md:h-12'} w-auto object-contain`}
                 />
               ) : (
-                <span className="text-base md:text-2xl font-bold text-gray-600 group-hover:text-white transition-colors duration-300 font-display cursor-default">
+                <span className="text-base md:text-2xl font-bold text-gray-400 group-hover:text-gray-900 transition-colors duration-300 font-display cursor-default">
                   {brand.name}
                 </span>
               )}

@@ -9,13 +9,14 @@ export default {
         extend: {
             colors: {
                 roasell: {
-                    black: '#080d23',
-                    card: '#0a0a0a',
+                    black: '#ffffff',
+                    card: '#f8f9fb',
+                    dark: '#f1f3f6',
                     gold: '#52b2ce',
                     goldLight: '#65d0eb',
                     goldDark: '#357a94',
-                    gray: '#888888',
-                    border: '#2a2a2a'
+                    gray: '#6b7280',
+                    border: '#e5e7eb'
                 }
             },
             fontFamily: {

@@ -66,9 +66,9 @@ const ShopifyNotification = () => {
 
 const SystemSection: React.FC = () => {
   return (
-    <section className="py-8 md:py-16 bg-roasell-black relative overflow-hidden">
+    <section className="py-8 md:py-16 bg-roasell-black relative overflow-hidden border-y border-gray-100">
       {/* Background decoration */}
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-roasell-gold/5 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-roasell-gold/8 rounded-full blur-[80px] pointer-events-none" />
 
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-6 md:gap-12 items-center">
@@ -83,14 +83,14 @@ const SystemSection: React.FC = () => {
               {/* Notification System - Relocated Here */}
               <ShopifyNotification />
 
-              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-roasell-gold text-[10px] md:text-sm font-medium mb-3">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-roasell-gold/10 border border-roasell-gold/30 text-roasell-goldDark text-[10px] md:text-sm font-medium mb-3">
                 <Database className="w-3 h-3 md:w-4 md:h-4" />
                 <span>Operatör Sistemi</span>
               </div>
-              <h2 className="text-2xl md:text-4xl font-bold font-display mb-3 text-white leading-tight">
+              <h2 className="text-2xl md:text-4xl font-bold font-display mb-3 text-gray-900 leading-tight">
                 Operasyonu Sıfırdan Kuranlar İçin
               </h2>
-              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
+              <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
                 Roasell Operatör Sistemi, ilk günden itibaren ne yapman gerektiğini değil, nasıl yapıldığını gösterir. Kendi operasyonumuzun dökümantasyonları, sistemleri ve adımlarıyla ilerlersin.
               </p>
 
@@ -100,8 +100,8 @@ const SystemSection: React.FC = () => {
                   "Gerçek bir mağazadan alınan kararlar",
                   "Kendi sisteminize entegre edebileceğiniz drive dosyaları"
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2 md:gap-3 text-gray-300 text-xs md:text-base">
-                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-roasell-gold/20 flex items-center justify-center text-roasell-gold shrink-0">
+                  <div key={idx} className="flex items-center gap-2 md:gap-3 text-gray-600 text-xs md:text-base">
+                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-roasell-gold/15 flex items-center justify-center text-roasell-goldDark shrink-0">
                       <ShieldCheck className="w-2.5 h-2.5 md:w-3 md:h-3" />
                     </div>
                     <span>{item}</span>
@@ -120,7 +120,7 @@ const SystemSection: React.FC = () => {
               className="relative z-10 px-2"
             >
               {/* Main Dashboard Card */}
-              <div className="bg-roasell-card border border-white/10 rounded-lg md:rounded-xl p-1 md:p-2 shadow-2xl relative z-10 overflow-hidden">
+              <div className="bg-white border border-gray-200 rounded-lg md:rounded-xl p-1 md:p-2 shadow-md relative z-10 overflow-hidden">
                 <video
                   autoPlay
                   loop
