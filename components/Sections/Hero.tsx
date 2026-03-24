@@ -138,8 +138,8 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className={`relative w-full max-w-[95%] md:max-w-4xl mt-4 md:mt-8 mb-2 flex flex-col items-center ${isLocked ? 'z-[50]' : ''}`}
         >
-          <div className="relative p-[6px] md:p-[7px] bg-[#DC2626] rounded-sm w-full">
-            <div className="absolute top-[1px] -translate-y-full left-1/2 -translate-x-1/2 bg-[#DC2626] text-white text-[9px] md:text-xs font-bold px-3 md:px-4 py-1 md:py-1.5 rounded-t-md md:rounded-t-lg uppercase tracking-wider z-20 whitespace-nowrap leading-none">
+          <div className="relative p-[6px] md:p-[7px] bg-[#023a97] rounded-sm w-full">
+            <div className="absolute top-[1px] -translate-y-full left-1/2 -translate-x-1/2 bg-[#023a97] text-white text-[9px] md:text-xs font-bold px-3 md:px-4 py-1 md:py-1.5 rounded-t-md md:rounded-t-lg uppercase tracking-wider z-20 whitespace-nowrap leading-none">
               SATIN ALMADAN ÖNCE İZLE
             </div>
 
@@ -193,12 +193,12 @@ const Hero: React.FC<HeroProps> = ({ variant = 'A' }) => {
                 className="mt-6 w-full flex flex-col items-center gap-2"
               >
                 <div
-                  className="bg-[#DC2626] text-white px-6 py-3 font-bold text-sm md:text-lg text-center leading-tight"
+                  className="bg-[#023a97] text-white px-6 py-3 font-bold text-sm md:text-lg text-center leading-tight"
                   style={{ textShadow: '2px 2px 0px rgba(0,0,0,1)' }}
                 >
                   Lütfen videoyu izleyin. <br /> Ekran kilidi 3 dakika sonra kaybolacak.
                 </div>
-                <div className="text-[#DC2626] font-display text-4xl md:text-5xl font-black">
+                <div className="text-[#023a97] font-display text-4xl md:text-5xl font-black">
                   {formatTime(lockTimer)}
                 </div>
               </motion.div>

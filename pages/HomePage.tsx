@@ -13,7 +13,7 @@ import FAQ from '../components/Sections/FAQ';
 
 const HomePage: React.FC = () => {
     return (
-        <div className="bg-roasell-black min-h-screen text-white selection:bg-roasell-gold selection:text-black">
+        <div className="bg-roasell-black min-h-screen text-gray-900 selection:bg-roasell-gold selection:text-white">
             <Header />
             <main>
                 <Hero variant="B" />
