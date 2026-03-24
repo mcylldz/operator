@@ -37,10 +37,10 @@ const Hero: React.FC<HeroProps> = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="font-bold text-gray-900 mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase text-[22px] md:text-[24px]"
+          className="font-bold text-gray-900 mb-3 leading-tight tracking-tight font-display max-w-5xl text-[22px] md:text-[24px]"
         >
-          <span className="whitespace-nowrap block">Bir e-ticaret operasyonu nasıl</span>
-          <span className="whitespace-nowrap block text-roasell-gold font-extrabold">sizden bağımsız büyür?</span>
+          <span className="whitespace-nowrap block">BİR E-TİCARET OPERASYONU NASIL</span>
+          <span className="whitespace-nowrap block text-roasell-gold font-extrabold">SİZDEN BAĞIMSIZ BÜYÜR?</span>
         </motion.h1>
 
         {/* Description */}
