@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = () => {
           transition={{ duration: 0.5 }}
           className="mb-0.5 md:mb-1"
         >
-          <span className="text-[10px] md:text-xs font-semibold text-gray-500 tracking-widest uppercase">
+          <span style={{ fontSize: '9px' }} className="font-semibold text-gray-500 tracking-widest uppercase">
             "Sistemi kurayım ama nereden başlayacağım?" Diyenler
           </span>
         </motion.div>
@@ -37,7 +37,8 @@ const Hero: React.FC<HeroProps> = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase"
+          style={{ fontSize: '22px' }}
+          className="font-bold text-gray-900 mb-3 leading-tight tracking-tight font-display max-w-5xl uppercase"
         >
           Bir e-ticaret operasyonu nasıl <br /> <span className="text-roasell-gold font-extrabold">sizden bağımsız büyür?</span>
         </motion.h1>
