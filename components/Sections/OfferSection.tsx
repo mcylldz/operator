@@ -270,44 +270,43 @@ const OfferSection: React.FC = () => {
 
                 {/* ── Eğitim Modülleri ── */}
                 <div>
-                  <div className="flex items-center gap-2 mb-4">
+                  <div className="flex items-center gap-2 mb-2.5">
                     <div className="w-[3px] h-4 bg-[#023a97] rounded-full" />
-                    <span className="text-xs font-bold text-[#023a97] uppercase tracking-wider flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" /> Eğitim Modülleri — 6+ Saat İçerik
-                    </span>
+                    <Clock className="w-3.5 h-3.5 text-[#023a97]" />
+                    <span className="text-[11px] font-bold text-[#023a97] uppercase tracking-wider">Eğitim Modülleri — 6+ Saat İçerik</span>
                   </div>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     {COURSE_MODULES.map((mod, idx) => (
                       <div
                         key={idx}
-                        className="module-card flex items-center gap-3 p-3 bg-[#f8f9fb] rounded-xl border border-gray-200 hover:border-[#023a97] hover:bg-blue-50/30 transition-all"
+                        className="flex items-center gap-2.5 px-3 py-2 bg-[#f8f9fb] rounded-lg border border-gray-200 hover:border-[#023a97] transition-colors"
                       >
-                        <div className="w-8 h-8 bg-[#023a97] rounded-lg flex items-center justify-center shrink-0">
-                          <Play className="w-3.5 h-3.5 text-white fill-white" />
+                        <div className="w-6 h-6 bg-[#023a97] rounded-md flex items-center justify-center shrink-0">
+                          <Play className="w-3 h-3 text-white fill-white" />
                         </div>
-                        <span className="text-sm font-semibold text-gray-900 flex-1 leading-snug">{mod.name}</span>
-                        <span className="text-xs text-gray-500 bg-white border border-gray-200 rounded-md px-2 py-0.5 font-medium whitespace-nowrap shrink-0">
+                        <span className="text-[13px] font-medium text-gray-900 flex-1 leading-snug">{mod.name}</span>
+                        <span className="text-[11px] text-gray-500 bg-white border border-gray-200 rounded px-1.5 py-0.5 font-medium whitespace-nowrap shrink-0">
                           {mod.duration}
                         </span>
                       </div>
                     ))}
                   </div>
-                  <div className="text-right text-xs text-[#023a97] font-bold border-t border-dashed border-gray-200 pt-2 mt-3">
-                    Toplam: 6 Saat 30 Dakika Eğitim İçeriği
+                  <div className="text-right text-[11px] text-[#023a97] font-semibold mt-1.5 pt-1.5 border-t border-dashed border-gray-200">
+                    Toplam: 6 Saat 30 Dakika
                   </div>
                 </div>
 
                 {/* ── Bonuslar ── */}
                 <div>
-                  <div className="bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-xl p-3 flex items-center justify-between mb-3">
-                    <span className="text-sm font-bold text-red-700">$499 Değerinde 8 Bonus — HEDİYE</span>
-                    <span className="bg-red-100 text-red-800 rounded-md text-xs font-bold px-2 py-0.5 shrink-0">ÜCRETSİZ</span>
+                  <div className="flex items-center justify-between px-3 py-2 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200 rounded-lg mb-1.5">
+                    <span className="text-[12px] font-bold text-red-600">$499 Değerinde 8 Bonus — HEDİYE</span>
+                    <span className="text-[10px] font-semibold text-red-800 bg-red-100 px-2 py-0.5 rounded shrink-0">ÜCRETSİZ</span>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                  <div className="grid grid-cols-2 gap-1">
                     {BONUSES.map((bonus, idx) => (
-                      <div key={idx} className="flex items-center gap-1.5 text-[11px] text-gray-700 bg-[#f8f9fb] border border-gray-200 rounded-lg px-2.5 py-1.5">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0" />
-                        <span>{bonus}</span>
+                      <div key={idx} className="flex items-center gap-1.5 text-[10px] text-gray-700 bg-[#f8f9fb] border border-gray-100 rounded-md px-2 py-1">
+                        <CheckCircle2 className="w-3 h-3 text-green-500 shrink-0" />
+                        <span className="leading-tight">{bonus}</span>
                       </div>
                     ))}
                   </div>
