@@ -121,15 +121,11 @@ const SystemSection: React.FC = () => {
             >
               {/* Main Dashboard Card */}
               <div className="bg-white border border-gray-200 rounded-lg md:rounded-xl p-1 md:p-2 shadow-md relative z-10 overflow-hidden">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
+                <img
+                  src="/assets/V1-poster.jpg"
+                  alt="Roasell Operatör Sistemi"
                   className="w-full h-auto rounded-lg md:rounded-lg object-cover"
-                >
-                  <source src="/assets/V1.mp4" type="video/mp4" />
-                </video>
+                />
               </div>
 
               {/* Background Grid Decoration */}
