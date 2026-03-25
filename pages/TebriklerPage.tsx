@@ -1,107 +1,56 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Eye, EyeOff, Loader2, ShieldCheck } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { CheckCircle, Mail, ShieldCheck } from 'lucide-react';
 import Header from '../components/Sections/Header';
 
-type PageState = 'password' | 'loading' | 'success';
-
 const TebriklerPage: React.FC = () => {
-    const [pageState, setPageState] = useState<PageState>('password');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-    const [errors, setErrors] = useState<string[]>([]);
-    const [touched, setTouched] = useState(false);
-
     const webhookSentRef = useRef(false);
 
     useEffect(() => {
         window.scrollTo(0, 0);
 
-        // Fire Facebook Pixel Purchase event immediately (but NOT the webhook)
+        // ── Facebook Pixel Purchase ──────────────────────────────
         (async function () {
-            const EVENT = 'Purchase';
             const GUARD_KEY = '__PURCHASE_PIXEL_SENT';
-
-            function uuidv4() {
-                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                    return v.toString(16);
-                });
-            }
-
             // @ts-ignore
             if (window[GUARD_KEY]) return;
             // @ts-ignore
             window[GUARD_KEY] = true;
 
+            function uuidv4() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                    var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
+
+            const purchaseInfo = JSON.parse(localStorage.getItem('last_purchase_info') || '{}');
+            const priceValue = purchaseInfo.price ?? 97;
             const event_id = uuidv4();
 
-            // Facebook Pixel only
             // @ts-ignore
             if (typeof fbq === 'function') {
                 try {
-                    fbq('track', EVENT, {
-                        value: 97,
+                    fbq('track', 'Purchase', {
+                        value: priceValue,
                         currency: 'USD',
                         content_type: 'product',
-                        content_ids: ['roasell-kit'],
-                        client_user_agent: navigator.userAgent
-                    }, {
-                        eventID: event_id
-                    });
+                        content_ids: ['roasell-operator'],
+                        client_user_agent: navigator.userAgent,
+                    }, { eventID: event_id });
                 } catch (e) { }
             }
         })();
-    }, []);
 
-    const validatePassword = (pw: string): string[] => {
-        const errs: string[] = [];
-        if (pw.length < 9) errs.push('En az 9 karakter olmalı');
-        if (!/[a-z]/.test(pw)) errs.push('Küçük harf içermeli');
-        if (!/[A-Z]/.test(pw)) errs.push('Büyük harf içermeli');
-        return errs;
-    };
-
-    const isValid = password.length >= 9
-        && /[a-z]/.test(password)
-        && /[A-Z]/.test(password)
-        && password === confirmPassword
-        && confirmPassword.length > 0;
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setTouched(true);
-
-        const validationErrors = validatePassword(password);
-        if (validationErrors.length > 0) {
-            setErrors(validationErrors);
-            return;
-        }
-        if (password !== confirmPassword) {
-            setErrors(['Şifreler eşleşmiyor']);
-            return;
-        }
-
-        setErrors([]);
-        setPageState('loading');
-
-        // Send webhook with password
+        // ── Purchase Webhook ─────────────────────────────────────
         if (!webhookSentRef.current) {
             webhookSentRef.current = true;
-            await sendWebhookWithPassword(password);
+            sendPurchaseWebhook();
         }
+    }, []);
 
-        // 4 second loading
-        setTimeout(() => {
-            setPageState('success');
-        }, 4000);
-    };
-
-    const sendWebhookWithPassword = async (pw: string) => {
-        const WEBHOOK = 'https://dtt1z7t3.rcsrv.com/webhook/roasell-kit';
-        const EVENT = 'Purchase';
+    const sendPurchaseWebhook = async () => {
+        const WEBHOOK = 'https://dtt1z7t3.rcsrv.com/webhook/operator';
 
         function getCookie(name: string) {
             const m = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.*+?^${}()|[\]\\])/g, '\\$1') + '=([^;]*)'));
@@ -110,7 +59,7 @@ const TebriklerPage: React.FC = () => {
         function getParam(k: string) { return new URLSearchParams(location.search).get(k); }
         function uuidv4() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
                 return v.toString(16);
             });
         }
@@ -130,9 +79,6 @@ const TebriklerPage: React.FC = () => {
         }
 
         const purchaseInfo = JSON.parse(localStorage.getItem('last_purchase_info') || '{}');
-        const event_id = uuidv4();
-        const event_time = Math.floor(Date.now() / 1000);
-        const user_agent = navigator.userAgent || '';
 
         let ip = '';
         try {
@@ -151,220 +97,142 @@ const TebriklerPage: React.FC = () => {
         const hashedLastName = await sha256(lastName);
 
         const data = {
-            event_name: EVENT,
-            event_id,
-            event_time,
-            fbp: computeFBP() || '',
-            fbc: computeFBC() || '',
-            ua: user_agent,
-            ip: ip,
-            url: location.href.split('?')[0],
-            ref: document.referrer || '',
-            variant: localStorage.getItem('ab_variant') || 'B',
+            // Customer info (clear)
             name: purchaseInfo.name || '',
             email: purchaseInfo.email || '',
             phone: purchaseInfo.phone || '',
+            price: purchaseInfo.price ?? 97,
+            currency: 'USD',
+            // Hashed fields (FB CAPI)
             em: hashedEmail,
             ph: hashedPhone,
             fn: hashedFirstName,
             ln: hashedLastName,
-            price: 97,
-            currency: 'USD',
+            // Tracking
+            event_name: 'Purchase',
+            event_id: uuidv4(),
+            event_time: Math.floor(Date.now() / 1000),
+            fbp: computeFBP() || '',
+            fbc: computeFBC() || '',
+            ua: navigator.userAgent,
+            ip,
+            url: location.href.split('?')[0],
+            ref: document.referrer || '',
+            variant: purchaseInfo.variant || localStorage.getItem('ab_variant') || 'A',
             utm_source: purchaseInfo.utm_source || null,
             utm_medium: purchaseInfo.utm_medium || null,
             utm_campaign: purchaseInfo.utm_campaign || null,
-            password: pw
         };
 
         localStorage.removeItem('last_purchase_info');
 
-        // IMAGE (GET)
+        // Dual send: image (GET) + fetch (POST)
         const img = new Image();
         img.src = WEBHOOK + '?' + new URLSearchParams(data as any).toString();
 
-        // FETCH (POST)
         try {
             fetch(WEBHOOK, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'text/plain' },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
             });
         } catch (e) { }
-
-        console.log('Purchase tracking sent with password:', event_id);
     };
 
-    const passErrors = touched ? validatePassword(password) : [];
-    const matchError = touched && confirmPassword.length > 0 && password !== confirmPassword;
-
     return (
-        <div className="min-h-screen bg-roasell-black text-white flex flex-col">
+        <div className="min-h-screen bg-[#080d23] text-white flex flex-col">
             <Header />
 
             <div className="flex-1 flex items-center justify-center p-4 pt-32 md:pt-40">
                 <div className="max-w-2xl w-full text-center">
 
-                    {/* Title */}
                     <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, type: 'spring' }}
+                        className="flex justify-center mb-8"
+                    >
+                        <div className="relative">
+                            <div className="absolute inset-0 bg-green-500/20 rounded-full blur-2xl scale-150" />
+                            <CheckCircle className="w-20 h-20 text-green-400 relative z-10" />
+                        </div>
+                    </motion.div>
+
+                    <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
+                        className="text-4xl md:text-6xl font-bold font-display mb-4"
                     >
-                        <h1 className="text-4xl md:text-6xl font-bold font-display mb-6">Tebrikler!</h1>
+                        Tebrikler! 🎉
+                    </motion.h1>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.35 }}
+                    >
+                        <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10 backdrop-blur-sm shadow-2xl">
+
+                            {/* Email icon */}
+                            <div className="flex justify-center mb-6">
+                                <div className="bg-[#023a97]/30 border border-[#023a97]/50 rounded-2xl p-4">
+                                    <Mail className="w-10 h-10 text-[#4a8af4]" />
+                                </div>
+                            </div>
+
+                            <p className="text-xl md:text-2xl font-semibold text-white mb-3">
+                                Satın alma işleminiz başarıyla tamamlandı.
+                            </p>
+
+                            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+                                Giriş bilgileriniz <span className="text-white font-semibold">{' '}kısa süre içinde{' '}</span>
+                                e-posta adresinize gönderilecektir. Lütfen spam klasörünüzü de kontrol edin.
+                            </p>
+
+                            <div className="bg-[#023a97]/20 border border-[#023a97]/30 rounded-xl p-4 text-sm text-gray-300 text-left space-y-2">
+                                <div className="flex items-start gap-2">
+                                    <ShieldCheck className="w-4 h-4 text-[#4a8af4] shrink-0 mt-0.5" />
+                                    <span>E-postayı aldıktan sonra <strong className="text-white">app.roasell.com</strong> adresinden giriş yapabilirsiniz.</span>
+                                </div>
+                                <div className="flex items-start gap-2">
+                                    <ShieldCheck className="w-4 h-4 text-[#4a8af4] shrink-0 mt-0.5" />
+                                    <span>Erişim genellikle <strong className="text-white">15 dakika</strong> içinde sağlanır.</span>
+                                </div>
+                                <div className="flex items-start gap-2">
+                                    <ShieldCheck className="w-4 h-4 text-[#4a8af4] shrink-0 mt-0.5" />
+                                    <span>Herhangi bir sorun yaşarsanız destek ekibimizle iletişime geçebilirsiniz.</span>
+                                </div>
+                            </div>
+                        </div>
                     </motion.div>
-
-                    <AnimatePresence mode="wait">
-
-                        {/* PASSWORD FORM STATE */}
-                        {pageState === 'password' && (
-                            <motion.div
-                                key="password-form"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ delay: 0.1 }}
-                            >
-                                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10 backdrop-blur-sm shadow-2xl">
-                                    <p className="text-lg md:text-xl leading-relaxed text-gray-200 mb-8">
-                                        Satın alma işleminiz başarıyla tamamlandı. <br className="hidden md:block" />
-                                        Lütfen panele giriş yapabilmek için şifrenizi oluşturun.
-                                    </p>
-
-                                    <form onSubmit={handleSubmit} className="space-y-6 max-w-md mx-auto text-left">
-                                        {/* Password Field */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-300 mb-2">Şifre</label>
-                                            <div className="relative">
-                                                <input
-                                                    type={showPassword ? 'text' : 'password'}
-                                                    value={password}
-                                                    onChange={(e) => { setPassword(e.target.value); if (touched) setErrors([]); }}
-                                                    placeholder="En az 9 karakter"
-                                                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-roasell-gold/60 focus:ring-1 focus:ring-roasell-gold/30 transition-all pr-12"
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowPassword(!showPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
-                                                >
-                                                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                                                </button>
-                                            </div>
-                                            {/* Password Rules */}
-                                            <div className="mt-2 space-y-1">
-                                                {[
-                                                    { label: 'En az 9 karakter', ok: password.length >= 9 },
-                                                    { label: 'Büyük harf içermeli', ok: /[A-Z]/.test(password) },
-                                                    { label: 'Küçük harf içermeli', ok: /[a-z]/.test(password) },
-                                                ].map((rule) => (
-                                                    <div key={rule.label} className={`flex items-center gap-2 text-xs transition-colors ${password.length > 0 ? (rule.ok ? 'text-green-400' : 'text-red-400') : 'text-gray-500'}`}>
-                                                        <div className={`w-1.5 h-1.5 rounded-full ${password.length > 0 ? (rule.ok ? 'bg-green-400' : 'bg-red-400') : 'bg-gray-500'}`} />
-                                                        {rule.label}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        {/* Confirm Password Field */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-300 mb-2">Şifre Tekrar</label>
-                                            <div className="relative">
-                                                <input
-                                                    type={showConfirmPassword ? 'text' : 'password'}
-                                                    value={confirmPassword}
-                                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                                    placeholder="Şifrenizi tekrar girin"
-                                                    className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-roasell-gold/60 focus:ring-1 focus:ring-roasell-gold/30 transition-all pr-12"
-                                                />
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
-                                                >
-                                                    {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                                                </button>
-                                            </div>
-                                            {matchError && (
-                                                <p className="mt-1.5 text-xs text-red-400">Şifreler eşleşmiyor</p>
-                                            )}
-                                        </div>
-
-                                        {/* Errors */}
-                                        {errors.length > 0 && (
-                                            <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-3">
-                                                {errors.map((err, i) => (
-                                                    <p key={i} className="text-red-400 text-sm">{err}</p>
-                                                ))}
-                                            </div>
-                                        )}
-
-                                        {/* Submit Button */}
-                                        <div className="pt-4">
-                                            <button
-                                                type="submit"
-                                                disabled={!isValid}
-                                                className={`w-full py-3.5 rounded-xl font-bold text-base uppercase tracking-wide transition-all duration-300 ${isValid
-                                                    ? 'bg-gradient-to-r from-roasell-gold to-yellow-500 text-black hover:shadow-lg hover:shadow-roasell-gold/25 hover:scale-[1.02] active:scale-[0.98]'
-                                                    : 'border-2 border-white/20 bg-transparent text-gray-400 cursor-not-allowed'
-                                                    }`}
-                                            >
-                                                Şifre Oluştur
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {/* LOADING STATE */}
-                        {pageState === 'loading' && (
-                            <motion.div
-                                key="loading"
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                className="flex flex-col items-center gap-6 py-12"
-                            >
-                                <div className="bg-white/5 border border-white/10 rounded-2xl p-10 md:p-14 backdrop-blur-sm shadow-2xl w-full flex flex-col items-center gap-6">
-                                    <Loader2 className="w-12 h-12 text-roasell-gold animate-spin" />
-                                    <p className="text-xl md:text-2xl text-gray-200 font-medium">
-                                        Şifreniz oluşturuluyor..
-                                    </p>
-                                </div>
-                            </motion.div>
-                        )}
-
-                        {/* SUCCESS STATE */}
-                        {pageState === 'success' && (
-                            <motion.div
-                                key="success"
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                            >
-                                <div className="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10 backdrop-blur-sm shadow-2xl">
-                                    <div className="flex justify-center mb-6">
-                                        <ShieldCheck className="w-16 h-16 text-green-400" />
-                                    </div>
-                                    <p className="text-xl md:text-2xl leading-relaxed text-gray-200">
-                                        Şifreniz başarılı bir şekilde oluşturuldu. Başta girdiğiniz e-mail adresi ve şimdi oluşturduğunuz şifreniz ile birlikte; <br className="hidden md:block" />
-                                        <a href="https://kitlogin.roasell.com" target="_blank" rel="noopener noreferrer" className="text-roasell-gold font-semibold underline underline-offset-4 hover:text-yellow-400 transition-colors">kitlogin.roasell.com</a> adresinden <span className="text-roasell-gold font-bold">Bilgisayar üzerinden</span> sürecinizi başlatabilirsiniz.
-                                    </p>
-                                </div>
-                            </motion.div>
-                        )}
-
-                    </AnimatePresence>
 
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
-                        className="mt-12 text-gray-500 text-sm"
+                        transition={{ delay: 0.6 }}
+                        className="mt-10"
+                    >
+                        <a
+                            href="https://app.roasell.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-[#023a97] hover:bg-[#012d78] text-white font-bold px-8 py-4 rounded-xl text-base transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#023a97]/30"
+                        >
+                            Platforma Git →
+                        </a>
+                    </motion.div>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                        className="mt-8 text-gray-500 text-sm"
                     >
                         Herhangi bir sorun yaşamanız durumunda destek ekibimizle iletişime geçebilirsiniz.
-                    </motion.div>
+                    </motion.p>
+
                 </div>
             </div>
         </div>

@@ -74,7 +74,9 @@ const TrustBar = () => (
 );
 
 /* ─────────── Checkout Form ─────────── */
-const CheckoutForm = () => {
+interface CheckoutFormProps { priceUsd: number; }
+
+const CheckoutForm: React.FC<CheckoutFormProps> = ({ priceUsd }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [message, setMessage] = useState<string | null>(null);
@@ -105,7 +107,7 @@ const CheckoutForm = () => {
         disabled={isLoading || !stripe || !elements}
         className="cta-glow w-full bg-[#023a97] hover:bg-[#012d78] disabled:opacity-60 text-white rounded-xl py-4 text-[15px] font-bold tracking-wide flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 active:translate-y-0"
       >
-        {isLoading ? 'İşleniyor...' : (<>SİPARİŞİ TAMAMLA — $97 <ArrowRight className="w-4 h-4" /></>)}
+        {isLoading ? 'İşleniyor...' : (<>SİPARİŞİ TAMAMLA — ${priceUsd} <ArrowRight className="w-4 h-4" /></>)}
       </button>
       <TrustBar />
     </form>
@@ -113,10 +115,26 @@ const CheckoutForm = () => {
 };
 
 /* ─────────── Main OfferSection ─────────── */
+
+function getVariantFromCookie(): 'A' | 'B' {
+  const match = document.cookie.match(/(?:^|; )ab_variant=([^;]*)/);
+  if (match) return match[1] as 'A' | 'B';
+  return (localStorage.getItem('ab_variant') as 'A' | 'B') || 'A';
+}
+
+const PRICE_MAP: Record<string, { display: string; original: string; discount: string }> = {
+  A: { display: '$97', original: '$245', discount: '%60 İndirim Uygulandı' },
+  B: { display: '$197', original: '$497', discount: '%60 İndirim Uygulandı' },
+};
+
 const OfferSection: React.FC = () => {
   const [clientSecret, setClientSecret] = useState('');
   const [customerInfo, setCustomerInfo] = useState({ name: '', email: '', phone: '' });
   const [step, setStep] = useState<'info' | 'payment'>('info');
+  const [priceUsd, setPriceUsd] = useState<number>(97);
+
+  const variant = getVariantFromCookie();
+  const priceInfo = PRICE_MAP[variant];
 
   const [utmParams] = useState({
     utm_source: new URLSearchParams(window.location.search).get('utm_source') || null,
@@ -163,10 +181,13 @@ const OfferSection: React.FC = () => {
       const res = await fetch('/.netlify/functions/create-payment-intent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: [{ id: 'roasell-kit' }], customer: customerInfo }),
+        body: JSON.stringify({ items: [{ id: 'roasell-kit' }], customer: customerInfo, variant }),
       });
       const data = await res.json();
       setClientSecret(data.clientSecret);
+      setPriceUsd(data.priceUsd ?? (variant === 'B' ? 197 : 97));
+      // Save price for purchase webhook
+      localStorage.setItem('last_purchase_info', JSON.stringify({ ...customerInfo, ...utmParams, price: data.priceUsd ?? (variant === 'B' ? 197 : 97), variant }));
       setStep('payment');
     } catch (err) {
       console.error('Error creating payment intent', err);
@@ -238,11 +259,11 @@ const OfferSection: React.FC = () => {
                 {/* Left: Price */}
                 <div className="flex flex-col gap-1">
                   <span className="text-xs font-bold text-green-600 flex items-center gap-1">
-                    <Tag className="w-3.5 h-3.5 fill-green-600 stroke-none" /> %60 İndirim Uygulandı
+                    <Tag className="w-3.5 h-3.5 fill-green-600 stroke-none" /> {priceInfo.discount}
                   </span>
                   <div className="flex items-baseline gap-2.5">
-                    <span className="text-lg text-gray-400 line-through font-medium">$245</span>
-                    <span className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-none">$97</span>
+                    <span className="text-lg text-gray-400 line-through font-medium">{priceInfo.original}</span>
+                    <span className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-none">{priceInfo.display}</span>
                   </div>
                   <span className="text-[11px] text-gray-500">tek seferlik ödeme</span>
                 </div>
@@ -363,11 +384,11 @@ const OfferSection: React.FC = () => {
                       >
                         <div className="flex items-center justify-between pb-4 mb-4 border-b border-gray-100">
                           <span className="text-sm font-medium text-gray-500">Ödenecek Tutar</span>
-                          <span className="text-xl font-bold text-green-600">$97.00</span>
+                          <span className="text-xl font-bold text-green-600">${priceUsd}.00</span>
                         </div>
                         {clientSecret && (
                           <Elements options={{ clientSecret, appearance }} stripe={stripePromise}>
-                            <CheckoutForm />
+                            <CheckoutForm priceUsd={priceUsd} />
                           </Elements>
                         )}
                         <button

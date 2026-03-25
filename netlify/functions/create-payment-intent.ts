@@ -3,8 +3,14 @@ import { Handler } from '@netlify/functions';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-    apiVersion: '2025-01-27.acacia',
+    apiVersion: '2025-12-15.clover',
 });
+
+// Price map per variant (in cents)
+const PRICE_MAP: Record<string, number> = {
+    A: 9700,  // $97
+    B: 19700, // $197
+};
 
 const handler: Handler = async (event) => {
     if (event.httpMethod !== 'POST') {
@@ -12,23 +18,25 @@ const handler: Handler = async (event) => {
     }
 
     try {
-        const { items, customer } = JSON.parse(event.body || '{}');
+        const { items, customer, variant } = JSON.parse(event.body || '{}');
 
-        // Hardcoded price for security: $97
-        const amount = 9700;
+        // Price determined by variant, fallback to A ($97)
+        const safeVariant = variant === 'B' ? 'B' : 'A';
+        const amount = PRICE_MAP[safeVariant];
+        const priceUsd = amount / 100;
 
-        // Create a PaymentIntent with the order amount and currency
+        // Create PaymentIntent
         const paymentIntent = await stripe.paymentIntents.create({
             amount,
             currency: 'usd',
-            automatic_payment_methods: {
-                enabled: true,
-            },
+            automatic_payment_methods: { enabled: true },
             metadata: {
-                product: 'RoaSell Kit',
+                product: 'Roasell Operatör Sistemi',
+                ab_variant: safeVariant,
+                price_usd: String(priceUsd),
                 customerName: customer?.name,
                 customerEmail: customer?.email,
-                customerPhone: customer?.phone
+                customerPhone: customer?.phone,
             },
             receipt_email: customer?.email,
         });
@@ -37,6 +45,8 @@ const handler: Handler = async (event) => {
             statusCode: 200,
             body: JSON.stringify({
                 clientSecret: paymentIntent.client_secret,
+                variant: safeVariant,
+                priceUsd,
             }),
         };
     } catch (error) {
