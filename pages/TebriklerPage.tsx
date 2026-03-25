@@ -194,10 +194,6 @@ const TebriklerPage: React.FC = () => {
                             <div className="bg-[#023a97]/20 border border-[#023a97]/30 rounded-xl p-4 text-sm text-gray-300 text-left space-y-2">
                                 <div className="flex items-start gap-2">
                                     <ShieldCheck className="w-4 h-4 text-[#4a8af4] shrink-0 mt-0.5" />
-                                    <span>E-postayı aldıktan sonra <strong className="text-white">app.roasell.com</strong> adresinden giriş yapabilirsiniz.</span>
-                                </div>
-                                <div className="flex items-start gap-2">
-                                    <ShieldCheck className="w-4 h-4 text-[#4a8af4] shrink-0 mt-0.5" />
                                     <span>Erişim genellikle <strong className="text-white">15 dakika</strong> içinde sağlanır.</span>
                                 </div>
                                 <div className="flex items-start gap-2">
