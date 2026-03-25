@@ -12,10 +12,10 @@ const Credibility: React.FC = () => {
           </h2>
             <p className="text-white/70 text-xs md:text-base leading-relaxed hidden md:block">
              8 yıl önce sıfırdan başladık. Türkiye, Avrupa ve Amerika pazarlarında markalar inşa ettik.
-             <span className="text-white font-semibold"> Roasell</span> ve <span className="text-white font-semibold">Romesel</span> çatısı altında kurduğumuz operasyonları bugün hâlâ bizzat yönetiyoruz. Size öğrettiğimiz her şeyi önce kendimiz sahada test ettik.
+             <span className="text-white font-semibold"> Roasell</span> çatısı altında kurduğumuz operasyonları bugün hâlâ bizzat yönetiyoruz. Size öğrettiğimiz her şeyi önce kendimiz sahada test ettik.
            </p>
           <p className="text-white/70 text-xs leading-relaxed md:hidden">
-            <span className="text-white font-semibold">Roasell</span> ve <span className="text-white font-semibold">Romesel</span> operasyonlarını bugün hâlâ bizzat yönetiyoruz.
+            <span className="text-white font-semibold">Roasell</span> çatısı altında kurduğumuz operasyonları bugün hâlâ bizzat yönetiyoruz.
           </p>
         </div>
 
