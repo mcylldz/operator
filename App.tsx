@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import TebriklerPage from './pages/TebriklerPage';
@@ -29,8 +30,16 @@ const VariantGate: React.FC<{ variant: 'A' | 'B' }> = ({ variant }) => {
 };
 
 const App: React.FC = () => {
-  // Assign variant on first load if not yet set
-  getOrAssignVariant();
+  const variant = getOrAssignVariant();
+
+  useEffect(() => {
+    // Send variant to Yandex Metrica as a visit parameter
+    // Visible in Metrica → Reports → Visit Parameters → ab_variant
+    const ym = (window as any).ym;
+    if (typeof ym === 'function') {
+      ym(108235257, 'params', { ab_variant: variant });
+    }
+  }, []); // runs once on mount
 
   return (
     <Router>
